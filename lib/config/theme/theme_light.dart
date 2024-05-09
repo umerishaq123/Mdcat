@@ -1,0 +1,214 @@
+import 'package:mdcat_kawiish/all_imports.dart';
+
+class Themelight {
+  Themelight._();
+
+  static ThemeData lightTheme = ThemeData(
+    scaffoldBackgroundColor: Themecolor.white,
+    brightness: Brightness.light,
+    appBarTheme: AppBarThemee.lightAppBarTheme,
+    checkboxTheme: CustomCheckboxTheme.lightTheme,
+    textTheme: Themetext.lightTextTheme,
+    useMaterial3: true,
+    elevatedButtonTheme: Elevatedbuttontheme.lightElevatedButtonTheme,
+    bottomSheetTheme: BottomSheetThemee.lightbottomSheetThemeData,
+    inputDecorationTheme: Textformfieldtheme.lightinputDecorationTheme,
+  );
+
+  static ThemeData darkTheme = ThemeData(
+      scaffoldBackgroundColor: Themecolor.black,
+      brightness: Brightness.dark,
+      appBarTheme: AppBarThemee.darkAppBarTheme,
+      checkboxTheme: CustomCheckboxTheme.darkTheme,
+      textTheme: Themetext.darkTextTheme,
+      useMaterial3: true,
+      elevatedButtonTheme: Elevatedbuttontheme.darkElevatedButtonTheme,
+      bottomSheetTheme: BottomSheetThemee.darktbottomSheetThemeData,
+      inputDecorationTheme: Textformfieldtheme.darkinputDecorationTheme);
+}
+
+class Elevatedbuttontheme {
+  Elevatedbuttontheme._();
+
+  static ElevatedButtonThemeData lightElevatedButtonTheme =
+      ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      elevation: 0,
+      foregroundColor: Themecolor.black,
+      disabledForegroundColor: Themecolor.grey,
+      disabledBackgroundColor: Themecolor.grey,
+      side: const BorderSide(color: Themecolor.grey),
+      textStyle: const TextStyle(
+          fontSize: 16, color: Themecolor.white, fontWeight: FontWeight.w600),
+      backgroundColor: Themecolor.primary,
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      minimumSize: const Size(327.0, 56.0),
+    ),
+  );
+
+  static ElevatedButtonThemeData darkElevatedButtonTheme =
+      ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      elevation: 0,
+      foregroundColor: Themecolor.white,
+      disabledForegroundColor: Themecolor.grey,
+      disabledBackgroundColor: Themecolor.grey,
+      side: const BorderSide(color: Themecolor.grey),
+      textStyle: const TextStyle(
+          fontSize: 16, color: Themecolor.white, fontWeight: FontWeight.w600),
+      backgroundColor: Themecolor.primary,
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      minimumSize: const Size(327.0, 56.0),
+    ),
+  );
+}
+
+class AppBarThemee {
+  AppBarThemee._();
+  static AppBarTheme lightAppBarTheme = const AppBarTheme(
+      elevation: 0,
+      centerTitle: false,
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      iconTheme: IconThemeData(color: Themecolor.black, size: 24),
+      actionsIconTheme: IconThemeData(color: Themecolor.black, size: 24),
+      titleTextStyle: TextStyle(
+        color: Themecolor.black,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w600,
+      ));
+
+  static AppBarTheme darkAppBarTheme = const AppBarTheme(
+      elevation: 0,
+      centerTitle: false,
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      iconTheme: IconThemeData(color: Themecolor.white, size: 24),
+      actionsIconTheme: IconThemeData(color: Themecolor.white, size: 24),
+      titleTextStyle: TextStyle(
+        color: Themecolor.white,
+        fontSize: 18.0,
+        fontWeight: FontWeight.w600,
+      ));
+}
+
+class BottomSheetThemee {
+  BottomSheetThemee._();
+  static BottomSheetThemeData lightbottomSheetThemeData = BottomSheetThemeData(
+    showDragHandle: true,
+    backgroundColor: Themecolor.white,
+    modalBackgroundColor: Themecolor.white,
+    constraints: BoxConstraints(minWidth: double.infinity),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+  );
+  static BottomSheetThemeData darktbottomSheetThemeData = BottomSheetThemeData(
+    showDragHandle: true,
+    backgroundColor: Themecolor.black,
+    modalBackgroundColor: Themecolor.black,
+    constraints: BoxConstraints(minWidth: double.infinity),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+  );
+}
+
+class CustomCheckboxTheme {
+  static CheckboxThemeData lightTheme = CheckboxThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      checkColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return Themecolor.white;
+        } else {
+          return Themecolor.black;
+        }
+      }),
+      fillColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return Themecolor.white;
+        } else {
+          return Themecolor.black;
+        }
+      }));
+  static CheckboxThemeData darkTheme = CheckboxThemeData(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(4),
+      ),
+      checkColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return Themecolor.black;
+        } else {
+          return Themecolor.white;
+        }
+      }),
+      fillColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.selected)) {
+          return Themecolor.black;
+        } else {
+          return Themecolor.white;
+        }
+      }));
+}
+
+class Textformfieldtheme {
+  Textformfieldtheme._();
+  static InputDecorationTheme lightinputDecorationTheme = InputDecorationTheme(
+    errorMaxLines: 3,
+    suffixIconColor: Themecolor.grey,
+    prefixIconColor: Themecolor.grey,
+    labelStyle:
+        const TextStyle().copyWith(fontSize: 14, color: Themecolor.black),
+    hintStyle:
+        const TextStyle().copyWith(fontSize: 14, color: Themecolor.black),
+    errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
+    floatingLabelStyle: const TextStyle().copyWith(
+        fontStyle: FontStyle.normal, color: Themecolor.black.withOpacity(0.8)),
+    border: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.grey)),
+    enabledBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.grey)),
+    focusedBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.black)),
+    errorBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.red)),
+    focusedErrorBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.orange)),
+  );
+  static InputDecorationTheme darkinputDecorationTheme = InputDecorationTheme(
+    errorMaxLines: 3,
+    suffixIconColor: Themecolor.grey,
+    prefixIconColor: Themecolor.grey,
+    labelStyle:
+        const TextStyle().copyWith(fontSize: 14, color: Themecolor.white),
+    hintStyle:
+        const TextStyle().copyWith(fontSize: 14, color: Themecolor.white),
+    errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
+    floatingLabelStyle: const TextStyle().copyWith(
+        fontStyle: FontStyle.normal, color: Themecolor.white.withOpacity(0.8)),
+    border: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.grey)),
+    enabledBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.grey)),
+    focusedBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.white)),
+    errorBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.red)),
+    focusedErrorBorder: const OutlineInputBorder().copyWith(
+        borderRadius: BorderRadius.circular(14),
+        borderSide: const BorderSide(width: 1, color: Themecolor.orange)),
+  );
+}

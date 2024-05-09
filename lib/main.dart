@@ -1,3 +1,5 @@
+import 'package:mdcat_kawiish/config/theme/theme_light.dart';
+
 import 'all_imports.dart';
 
 void main() {
@@ -15,11 +17,9 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => CounterBloc()),
       ],
       child: MaterialApp(
+        theme: Themelight.lightTheme,
+        darkTheme: Themelight.darkTheme,
         title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
         // home: const CounterScreen(),
       ),
     );
