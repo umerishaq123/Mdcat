@@ -1,3 +1,8 @@
+import 'package:mdcat_kawiish/bloc/theme/theme_bloc.dart';
+import 'package:mdcat_kawiish/bloc/theme/theme_event.dart';
+import 'package:mdcat_kawiish/bloc/theme/theme_state.dart';
+import 'package:mdcat_kawiish/config/theme/theme.dart';
+
 import 'all_imports.dart';
 
 void main() {
@@ -12,15 +17,43 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         // create: (BuildContext context) => CounterBloc(),
-        BlocProvider(create: (_) => CounterBloc()),
+        BlocProvider(create: (_) => ThemeBloc()),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (BuildContext context, state) {
+          return MaterialApp(
+            theme:
+                state.isDarkOrLight ? AppTheme.lightTheme : AppTheme.darkTheme,
+            darkTheme: AppTheme.darkTheme,
+            title: 'Flutter Demo',
+
+            // home: const MyWidget(),
+            home:  MyHomePage(),
+          );
+        },
+      ),
+    );
+  }
+}
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Theme Example'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            TextFormField(),
+            ElevatedButton(
+              onPressed: () {
+                BlocProvider.of<ThemeBloc>(context).add(IsDarkOrLightMode());
+              },
+              child: Text('Toggle Theme'),
+            ),
+          ],
         ),
-        // home: const MyWidget(),
       ),
     );
   }
