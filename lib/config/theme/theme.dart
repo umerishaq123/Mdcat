@@ -86,7 +86,7 @@ class AppBarThemee {
   AppBarThemee._();
   static AppBarTheme lightAppBarTheme = const AppBarTheme(
       elevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       iconTheme: IconThemeData(color: Themecolor.black, size: 24),
@@ -99,7 +99,7 @@ class AppBarThemee {
 
   static AppBarTheme darkAppBarTheme = const AppBarTheme(
       elevation: 0,
-      centerTitle: false,
+      centerTitle: true,
       backgroundColor: Colors.transparent,
       surfaceTintColor: Colors.transparent,
       iconTheme: IconThemeData(color: Themecolor.white, size: 24),
@@ -172,12 +172,13 @@ class Textformfieldtheme {
   Textformfieldtheme._();
   static InputDecorationTheme lightinputDecorationTheme = InputDecorationTheme(
     errorMaxLines: 3,
+    
     suffixIconColor: Themecolor.grey,
     prefixIconColor: Themecolor.grey,
     labelStyle:
-        const TextStyle().copyWith(fontSize: 14, color: Themecolor.black),
+        const TextStyle().copyWith(fontSize: 14, color: Themecolor.grey),
     hintStyle:
-        const TextStyle().copyWith(fontSize: 14, color: Themecolor.black),
+        const TextStyle().copyWith(fontSize: 14, color: Themecolor.grey),
     errorStyle: const TextStyle().copyWith(fontStyle: FontStyle.normal),
     floatingLabelStyle: const TextStyle().copyWith(
         fontStyle: FontStyle.normal, color: Themecolor.black.withOpacity(0.8)),
@@ -228,10 +229,10 @@ class Textformfieldtheme {
 
 class Themetext {
   Themetext._();
-  static const double smallSize = 12.0;
-  static const double mediumeSize = 14.0;
-  static const double largeSize = 18.0;
-  static const double extraLargeSize = 24.0;
+  // static const double smallSize = 12.0;
+  // static const double mediumeSize = 14.0;
+  // static const double largeSize = 18.0;
+  // static const double extraLargeSize = 24.0;
 
   static TextTheme lightTextTheme = TextTheme(
     headlineLarge: const TextStyle().copyWith(

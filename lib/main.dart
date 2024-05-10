@@ -1,3 +1,5 @@
+
+
 import 'all_imports.dart';
 
 void main() {
@@ -12,44 +14,22 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => ThemeBloc()),
-        BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
+        // BlocProvider(create: (_)=>loginBloc()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (BuildContext context, state) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
             theme:
                 state.isDarkOrLight ? AppTheme.lightTheme : AppTheme.darkTheme,
             darkTheme: AppTheme.darkTheme,
             title: 'Flutter Demo',
 
             // home: const MyWidget(),
-            home: MyHomePage(),
+            initialRoute: RoutesName.splashScreen,
+      onGenerateRoute: Routes.generateRoute,
           );
         },
-      ),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Theme Example'),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            TextFormField(),
-            ElevatedButton(
-              onPressed: () {
-                BlocProvider.of<ThemeBloc>(context).add(IsDarkOrLightMode());
-              },
-              child: Text('Toggle Theme'),
-            ),
-          ],
-        ),
       ),
     );
   }
