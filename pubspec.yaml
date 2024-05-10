@@ -35,15 +35,27 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  fluttertoast: ^8.0.9
-  another_flushbar: ^1.10.29
-  flutter_bloc: ^8.1.5
+  http: ^1.2.1
   bloc: ^8.1.4
+  flutter_bloc: ^8.1.5
+  get_it: ^7.7.0
+  freezed_annotation: ^2.4.1
+  json_annotation: ^4.9.0
+  fluttertoast: ^8.0.9
+  cached_network_image: ^3.3.1
+  another_flushbar: ^1.10.29
   equatable: ^2.0.5
+  flutter_secure_storage: ^9.1.1 #Flutter Secure Storage provides API to store data in secure storage. Keychain is used in iOS, KeyStore based solution is used in Android.
+  freezed: ^2.5.2 # Code generation for immutable classes that has a simple syntax/API without compromising on the features.
+  image_picker: ^1.1.1
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  build_runner: ^2.4.9 # A build system for Dart code generation and modular compilation.
+  json_serializable: ^6.8.0 # Automatically generate code for converting to and from JSON by annotating Dart classes.
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

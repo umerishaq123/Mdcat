@@ -1,8 +1,3 @@
-import 'package:mdcat_kawiish/bloc/theme/theme_bloc.dart';
-import 'package:mdcat_kawiish/bloc/theme/theme_event.dart';
-import 'package:mdcat_kawiish/bloc/theme/theme_state.dart';
-import 'package:mdcat_kawiish/config/theme/theme.dart';
-
 import 'all_imports.dart';
 
 void main() {
@@ -16,8 +11,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // create: (BuildContext context) => CounterBloc(),
         BlocProvider(create: (_) => ThemeBloc()),
+        BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (BuildContext context, state) {
@@ -28,13 +23,14 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
 
             // home: const MyWidget(),
-            home:  MyHomePage(),
+            home: MyHomePage(),
           );
         },
       ),
     );
   }
 }
+
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
