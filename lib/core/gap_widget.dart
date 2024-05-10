@@ -30,6 +30,6 @@ class GappedWidget extends StatelessWidget {
   }
 
   double _defaultGap(BuildContext context) {
-    return MediaQuery.of(context).size.width * 0.05; // 5% of screen width
+    return MediaQuery.of(context).size.width * 0.01; // 5% of screen width
   }
 }
