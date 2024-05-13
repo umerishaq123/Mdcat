@@ -1,11 +1,6 @@
 abstract class BaseApiServices {
-Future<dynamic> fetchGetApiWithToken(String url, [String? token]);
-
-
-  Future<dynamic> fetchPostApi(String url, dynamic data);
-
-  Future<dynamic> fetchPostApiWithToken(
-      String url, dynamic data, String token);
+  Future<dynamic> fetchGetApi(String url, [String? token]);
+  Future<dynamic> fetchPostApi(String url, dynamic data, String? token);
 
   Future<dynamic> fetchPostApiWithImages({
     required String url,
@@ -14,5 +9,3 @@ Future<dynamic> fetchGetApiWithToken(String url, [String? token]);
     String? token,
   });
 }
-
-

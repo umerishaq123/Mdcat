@@ -8,28 +8,48 @@ import 'package:mdcat_kawiish/data/network/base_api_services.dart';
 
 class NetworkApiService extends BaseApiServices {
   @override
-Future<dynamic> fetchGetApiWithToken(String url, [String? token]) async {
-  dynamic responseJson;
-  try {
-    var headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    };
+  Future<dynamic> fetchGetApi(String url, [String? token]) async {
+    dynamic responseJson;
+    try {
+      var headers = {'Content-Type': 'application/x-www-form-urlencoded'};
 
-    // Add authorization header if token is provided
-    if (token != null) {
-      headers['Authorization'] = token;
+      // Add authorization header if token is provided
+      if (token != null) {
+        headers['Authorization'] = token;
+      }
+
+      final response = await http
+          .get(Uri.parse(url), headers: headers)
+          .timeout(const Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
     }
 
-    final response = await http
-        .get(Uri.parse(url), headers: headers)
-        .timeout(const Duration(seconds: 10));
-    responseJson = returnResponse(response);
-  } on SocketException {
-    throw FetchDataException('No Internet Connection');
+    return responseJson;
   }
 
-  return responseJson;
-}
+  @override
+  Future fetchPostApi(String url, data, String? token) async {
+    dynamic responseJson;
+    try {
+      final headers = {'Content-Type': 'application/json'};
+      // Add authorization header if token is provided
+      if (token != null) {
+        headers['Authorization'] = token;
+      }
+
+      Response response =
+          await post(Uri.parse(url), headers: headers, body: jsonEncode(data))
+              .timeout(const Duration(seconds: 10));
+      responseJson = returnResponse(response);
+    } on SocketException {
+      throw FetchDataException('No Internet Connection');
+    }
+
+    return responseJson;
+  }
+
   @override
   Future<dynamic> fetchPostApiWithImages({
     required String url,
@@ -52,7 +72,8 @@ Future<dynamic> fetchGetApiWithToken(String url, [String? token]) async {
         var imagePath = entry.value;
 
         if (!imagePath.contains('https') && !imagePath.contains('http')) {
-          request.files.add(await http.MultipartFile.fromPath(imageKey, imagePath));
+          request.files
+              .add(await http.MultipartFile.fromPath(imageKey, imagePath));
         }
       }
 
@@ -66,42 +87,6 @@ Future<dynamic> fetchGetApiWithToken(String url, [String? token]) async {
       // Send the request
       Response response = await http.Response.fromStream(await request.send());
 
-      responseJson = returnResponse(response);
-    } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    }
-
-    return responseJson;
-  }
-
-
-  @override
-  Future fetchPostApiWithToken(String url, data, String token) async {
-    dynamic responseJson;
-    try {
-      final headers = {
-        'Authorization': token,
-        'Content-Type': 'application/json'
-      };
-      Response response =
-          await post(Uri.parse(url), headers: headers, body: jsonEncode(data))
-              .timeout(const Duration(seconds: 10));
-      responseJson = returnResponse(response);
-    } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    }
-
-    return responseJson;
-  }
-
-  @override
-  Future fetchPostApi(String url, dynamic data) async {
-    dynamic responseJson;
-    try {
-      final headers = {'Content-Type': 'application/json'};
-      Response response =
-          await post(Uri.parse(url), headers: headers, body: jsonEncode(data))
-              .timeout(const Duration(seconds: 10));
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');
