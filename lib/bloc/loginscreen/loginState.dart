@@ -1,14 +1,20 @@
 import 'package:equatable/equatable.dart';
 
-class LoginState extends Equatable{
+class LoginState extends Equatable {
   List<String> selectrole;
-  LoginState( {this.selectrole=const []});
-  
-  LoginState copyWith({List<String>? selectrole}){
-    return LoginState(selectrole: selectrole ?? this.selectrole);
+  String email;
+  String password;
+  LoginState({this.selectrole = const [], this.email = '', this.password = ''});
+
+  LoginState copyWith(
+      {List<String>? selectrole, String? email, String? password}) {
+    return LoginState(
+        selectrole: selectrole ?? this.selectrole,
+        email: email ?? this.email,
+        password: password ?? this.password);
   }
-  
+
   @override
   // TODO: implement props
-  List<Object?> get props => [selectrole];
+  List<Object?> get props => [selectrole,email,password];
 }
