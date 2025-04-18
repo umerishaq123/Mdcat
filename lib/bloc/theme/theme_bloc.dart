@@ -7,8 +7,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     on<IsDarkOrLightMode>(_turnOnOFf);
   }
   void _turnOnOFf(IsDarkOrLightMode event, Emitter<ThemeState> emit) {
-    emit(state.copyWith(isDarkOrLight:!state.isDarkOrLight));
+    emit(state.copyWith(isDarkOrLight: !state.isDarkOrLight));
   }
-
-  
 }
+                // BlocProvider.of<ThemeBloc>(context).add(IsDarkOrLightMode());

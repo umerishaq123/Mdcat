@@ -1,11 +1,4 @@
-import 'package:mdcat_kawiish/bloc/loginscreen/loginBloc.dart';
-import 'package:mdcat_kawiish/bloc/theme/theme_bloc.dart';
-import 'package:mdcat_kawiish/bloc/theme/theme_event.dart';
-import 'package:mdcat_kawiish/bloc/theme/theme_state.dart';
-import 'package:mdcat_kawiish/config/routes/routes.dart';
-import 'package:mdcat_kawiish/config/routes/routes_name.dart';
-import 'package:mdcat_kawiish/config/theme/theme.dart';
-import 'package:mdcat_kawiish/view/login/login_mobile.dart';
+
 
 import 'all_imports.dart';
 
@@ -20,7 +13,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // create: (BuildContext context) => CounterBloc(),
         BlocProvider(create: (_) => ThemeBloc()),
         // BlocProvider(create: (_)=>loginBloc()),
       ],

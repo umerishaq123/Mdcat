@@ -1,7 +1,6 @@
 import 'package:mdcat_kawiish/all_imports.dart';
 import 'package:mdcat_kawiish/bloc/loginscreen/loginBloc.dart';
-import 'package:mdcat_kawiish/bloc/loginscreen/loginEvent.dart';
-import 'package:mdcat_kawiish/bloc/loginscreen/loginState.dart';
+import 'package:mdcat_kawiish/view/login/widgets.dart';
 
 class LoginMobile extends StatefulWidget {
   const LoginMobile({
@@ -15,22 +14,16 @@ class LoginMobile extends StatefulWidget {
 class _LoginMobileState extends State<LoginMobile> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  ValueNotifier _obscurePAsswordText = ValueNotifier(true);
-  late loginBloc _loginbloc;
+  ValueNotifier obscurePAsswordText = ValueNotifier(true);
+  late LoginBloc _loginbloc;
   @override
   void initState() {
     super.initState();
-    _loginbloc = loginBloc();
+    _loginbloc = LoginBloc();
   }
-
-  final _formKey = GlobalKey<FormState>();
-  String? _selectedRole;
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-
     return PopScope(
         canPop:
             true, // Initially allow pop (can be changed based on conditions)
@@ -50,6 +43,8 @@ class _LoginMobileState extends State<LoginMobile> {
                 appBar: AppBar(
                   leading: IconButton(
                     onPressed: () {
+                                            print('Im iin mobile');
+
                       // showCloseConfirmationDialog(context);
                     },
                     icon: const Icon(Icons.arrow_back_ios),
@@ -82,93 +77,30 @@ class _LoginMobileState extends State<LoginMobile> {
                           style: context.textTheme.bodyLarge,
                         ),
                         const GappedWidget(),
-                        BlocBuilder<loginBloc, LoginState>(
-                            builder: (context, state) {
-                          return TextFormField(
-                            onChanged: (value) {
-                              context
-                                  .read<loginBloc>()
-                                  .add(Emailchange(email: value));
-                            },
-                            decoration: const InputDecoration(
-                              hintText: 'enter your email',
-                            ),
-                          );
-                        }),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                            hintText: 'enter your email',
+                          ),
+                        ),
                         const GappedWidget(
                           topGap: 15,
                         ),
                         Text('Password', style: context.textTheme.bodyLarge),
                         const GappedWidget(),
-                        BlocBuilder<loginBloc, LoginState>(
-                            buildWhen: (current, previous) =>
-                                current.email != previous.email,
-                            builder: (BuildContext context, state) {
-                              return TextFormField(
-                                onChanged: (newValue) {
-                                  context
-                                      .read<loginBloc>()
-                                      .add(Emailchange(email: newValue));
-                                },
-                                decoration: const InputDecoration(
-                                    hintText: 'Enter your password'),
-                              );
-                            }),
+                        TextFormField(
+                          decoration: const InputDecoration(
+                              hintText: 'Enter your password'),
+                        ),
                         const GappedWidget(
                           bottomGap: 20,
                         ),
                         Text('Role', style: context.textTheme.bodyLarge),
                         const GappedWidget(),
-                        BlocBuilder<loginBloc, LoginState>(
-                          buildWhen: (current, previous) => false,
-                          builder: (BuildContext context, state) {
-                            return Container(
-                              height: height * 0.07,
-                              padding: EdgeInsets.symmetric(horizontal: 12.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(color: Themecolor.grey),
-                                borderRadius: BorderRadius.circular(15.0),
-                              ),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  style: TextStyle(color: Themecolor.grey),
-                                  borderRadius: BorderRadius.circular(16),
-                                  isExpanded: true,
-                                  value: state.selectrole.isNotEmpty
-                                      ? state.selectrole[0]
-                                      : null,
-                                  hint: Text('Select Role'),
-                                  onChanged: (newValue) {
-                                    context
-                                        .read<loginBloc>()
-                                        .add(selectrole(roles: [newValue!]));
-                                  },
-                                  items: <String>[
-                                    'Academy',
-                                    'Teacher',
-                                    'Student'
-                                  ].map((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        // SizedBox(height: 20),
-                        // Text('Selected Role: $_selectedRole'),
+                        buildSelectRoleWidget(),
                         const GappedWidget(
                           topGap: 20,
                         ),
-                        Center(
-                            child: ElevatedButton(
-                                onPressed: () {
-                                  Utils.dismissKeyboard(context);
-                                },
-                                child: const Text('Login'))),
+                        buildSignInButton(),
                         const GappedWidget(
                           bottomGap: 15,
                         ),
